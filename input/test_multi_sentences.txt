@@ -1,0 +1,12 @@
+﻿E -> T EP
+EP -> + T EP | ε
+T -> F TP
+TP -> * F TP | ε
+F -> ( E ) | id
+
+%%
+
+id + id * id
+( id )
+id * id + id
+( id + id ) * id
