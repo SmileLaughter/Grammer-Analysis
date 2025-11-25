@@ -153,11 +153,8 @@ class FirstFollowCalculator:
         for non_terminal in self.grammar.non_terminals:
             self.follow[non_terminal] = set()
         
-        # 根据include_dollar决定是否将$加入到开始符号的FOLLOW集
-        # LL(1): 不需要$
-        # LR系列: 需要$来处理增广文法的归约
-        if self.include_dollar:
-            self.follow[self.grammar.start_symbol].add('$')
+        # 文法初始符号的FOLLOW集初始化为{$}
+        self.follow[self.grammar.start_symbol].add('$')
         
         # 不断迭代直到不再有变化
         changed = True
@@ -222,12 +219,11 @@ class FirstFollowCalculator:
     
     def get_follow_set_for_display(self, non_terminal: str) -> Set[str]:
         """
-        获取非终结符的FOLLOW集用于显示（总是不包含$）
+        获取非终结符的FOLLOW集用于显示
         :param non_terminal: 非终结符
-        :return: FOLLOW集（不包含$）
+        :return: FOLLOW集
         """
         follow_set = self.follow.get(non_terminal, set()).copy()
-        follow_set.discard('$')
         return follow_set
     
     def get_production_first_set(self, production: Production) -> Set[str]:

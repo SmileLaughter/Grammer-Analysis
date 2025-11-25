@@ -92,7 +92,7 @@ class OutputFormatter:
         
         # 按字母顺序排序非终结符
         for nt in sorted(grammar.non_terminals):
-            # 使用 get_follow_set_for_display 确保显示时不包含$
+            # 使用 get_follow_set_for_display 获取FOLLOW集
             follow_set = calculator.get_follow_set_for_display(nt)
             follow_str = ', '.join(sorted(follow_set)) if follow_set else '∅'
             table.add_row(nt, f"{{ {follow_str} }}")
