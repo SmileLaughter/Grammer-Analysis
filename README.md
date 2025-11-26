@@ -29,7 +29,7 @@
 pip install -r requirements.txt
 ```
 
-在项目根目录（`Chp 3 Grammer analysis`）下运行主程序：
+在项目根目录下运行主程序：
 
 ```powershell
 python main.py
